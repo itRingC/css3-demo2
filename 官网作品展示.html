@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>\
+	<style type="text/css">
+	*{margin: 0;padding: 0;list-style: none;}
+	body{background: black;text-align: center;}
+	input{ padding:10px 20px; border:1px solid #000;}
+	input:active{ background:#999; color:#fff;}
+
+	#ul1{ width:300px; height:300px; position:absolute; left:50%; top:50%; margin-left:-150px; margin-top:-150px;}
+	#ul1 li{ width:100%; height:100%; position:absolute; left:0; top:0; background:#399; color:#fff; font-size:50px; text-align:center; line-height:300px; font-weight:bold; font-family:微软雅黑; border:1px solid #ccc; opacity:0; -webkit-box-reflect:below 10px -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.5)); transition:.5s all ease;  transform:perspective(800px) translateX(0px) rotateY(0deg);}
+
+	#ul1 li.l2{ opacity:0; transform:perspective(800px) translateX(-280px) rotateY(60deg); z-index:1;}
+	#ul1 li.l1{ opacity:0.8; transform:perspective(800px) translateX(-220px) rotateY(60deg); z-index:2;}
+	#ul1 li.cur{ opacity:1; z-index:5;}
+	#ul1 li.r1{ opacity:0.8;transform:perspective(800px) translateX(220px) rotateY(-60deg); z-index:2;}
+	#ul1 li.r2{ opacity:0;transform:perspective(800px) translateX(280px) rotateY(-60deg); z-index:1;}
+
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+			
+		var oL=document.querySelector('.left');
+		var oR=document.querySelector('.right');
+		var aLi=document.querySelectorAll('#ul1 li');
+		
+		var aClass=[];
+		for(var i=0;i<aLi.length;i++){
+			aClass[i]=aLi[i].className;
+		}
+
+		function tab(){
+			for(var i =0;i<aLi.length;i++){
+				aLi[i].className=aClass[i];
+			}
+		}
+
+		oL.onclick=function(){
+			aClass.unshift(aClass.pop()); 
+			tab();
+		};
+
+		oR.onclick=function(){
+			aClass.push(aClass.shift());
+			tab();
+		};
+
+	};
+	</script>
+</head>
+<body>
+	<input type="button" value="←" class="left">
+	<input type="button" value="→" class="right">
+	<ul id="ul1">
+		<li class="l2">0</li>
+	    <li class="l1">1</li>
+	    <li class="cur">2</li>
+	    <li class="r1">3</li>
+	    <li class="r2">4</li>
+	    <li>5</li>
+	    <li>6</li>
+	    <li>7</li>
+	    <li>8</li>
+	</ul>
+</body>
+</html>
